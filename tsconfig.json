@@ -25,5 +25,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "typings.d.ts"]
+  "include": ["src", "typings.d.ts", "demo"]
 }

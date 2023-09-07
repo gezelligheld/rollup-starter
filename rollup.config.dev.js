@@ -5,7 +5,7 @@ import typescript from 'rollup-plugin-typescript2';
 import deleteDist from 'rollup-plugin-delete';
 
 export default {
-  input: 'src/demo/index.tsx',
+  input: 'demo/index.tsx',
   output: {
     name: 'demo',
     file: 'dist/index.js',
