@@ -5,7 +5,7 @@ import typescript from 'rollup-plugin-typescript2';
 import deleteDist from 'rollup-plugin-delete';
 
 export default {
-  input: 'src/index.tsx',
+  input: 'src/demo/index.tsx',
   output: {
     name: 'demo',
     file: 'dist/index.js',
@@ -15,7 +15,13 @@ export default {
   plugins: [
     deleteDist({ targets: 'dist/*' }),
     resolve(),
-    commonjs(),
+    commonjs({
+      namedExports: {
+        // This is needed because react/jsx-runtime exports jsx on the module export.
+        // Without this mapping the transformed import import {jsx as _jsx} from 'react/jsx-runtime' will fail.
+        'react/jsx-runtime': ['jsx', 'jsxs'],
+      },
+    }),
     typescript(),
     serve({
       open: true, // 是否打开浏览器
